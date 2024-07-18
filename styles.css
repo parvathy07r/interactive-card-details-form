@@ -95,3 +95,17 @@ button {
     display: flex;
     justify-content: space-between;
 }
+
+
+
+.second-page img {
+    width: 64px;
+}
+.second-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    row-gap: 16px;
+    display: none;
+}

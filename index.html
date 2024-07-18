@@ -20,7 +20,10 @@
         <div class="display-number"></div>
         <div class="second-row">
           <div class="display-name"></div>
-          <div class="display-expiry"></div>
+          <div>
+            <span class="display-month"></span>/
+            <span class="display-year"></span>
+          </div>
         </div>
       </div>
       <div class="card card-two">
@@ -32,7 +35,7 @@
 
         <div class="row-one">
           <span>CARDHOLDER NAME</span><br>
-          <input type="text" placeholder="e.g. Jane Appleseed" id="name">
+          <input type="text" placeholder="e.g. Jane Appleseed" id="name" class="display-name">
         </div>
 
         <div class="row-two">
@@ -44,8 +47,8 @@
         <div class="row-three">
           <div class="expiry-date">
             <span>Exp. Date (MM/YY)</span><br>
-            <input type="text" placeholder="MM" id="dd">
-            <input type="text" placeholder="YY" id="mm">
+            <input type="text" placeholder="MM" id="month">
+            <input type="text" placeholder="YY" id="year">
           </div>
 
           <div class="cvc-data">
@@ -58,18 +61,15 @@
         <button>Confirm</button>
 
       </form>
+
+      <div class="second-page">
+        <div><img src="./images/icon-complete.svg" alt=""></div>
+        <div>THANK YOU!</div>
+        <div>We've added your card details</div>
+        <div><button>Continue</button></div>
+      </div>
     </div>
   </div>
-
-
-
-
-
-  <!-- Completed state start
-
-  Thank you!
-  We've added your card details
-  Continue -->
 
   <script src="./script.js"></script>
 
