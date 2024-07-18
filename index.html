@@ -1,19 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <link rel="stylesheet" href="./styles.css">
-  
+
   <title>Interactive card details form</title>
 
 </head>
+
 <body>
 
-  
-  
+  <div class="wrapper">
+    <div class="container-one">
+      <div class="card card-one">
+        <img src="./images/card-logo.svg" alt="">
+        <div class="display-number"></div>
+        <div class="second-row">
+          <div class="display-name"></div>
+          <div class="display-expiry"></div>
+        </div>
+      </div>
+      <div class="card card-two">
+        <div class="display-cvc"></div>
+      </div>
+    </div>
+    <div class="container-two">
+      <form action="" id="form_data">
+
+        <div class="row-one">
+          <span>CARDHOLDER NAME</span><br>
+          <input type="text" placeholder="e.g. Jane Appleseed" id="name">
+        </div>
+
+        <div class="row-two">
+          <span>CARDHOLDER NUMBER</span><br>
+          <input type="text" placeholder="e.g. 1234 5678 9123 0000" id="number">
+          <div class="error"></div>
+        </div>
+
+        <div class="row-three">
+          <div class="expiry-date">
+            <span>Exp. Date (MM/YY)</span><br>
+            <input type="text" placeholder="MM" id="dd">
+            <input type="text" placeholder="YY" id="mm">
+          </div>
+
+          <div class="cvc-data">
+            <span>CVC</span><br>
+            <input type="text" placeholder="e.g. 123" id="cvc">
+          </div>
+
+        </div>
+
+        <button>Confirm</button>
+
+      </form>
+    </div>
+  </div>
+
+
+
+
+
+  <!-- Completed state start
+
+  Thank you!
+  We've added your card details
+  Continue -->
+
   <script src="./script.js"></script>
 
 </body>
+
 </html>
