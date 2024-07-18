@@ -16,7 +16,7 @@ p {
     display: flex;
     justify-content: center;
     align-items: center;
-    column-gap: 64px;
+    column-gap: 104px;
     height: 100vh;
     border: 1px solid red;
     margin: 0 auto
@@ -53,7 +53,7 @@ span {
     font-size: 12px;
 }
 
-#expiry {
+#dd, #mm {
     width: 40px;
 }
 
@@ -83,6 +83,8 @@ button {
 .card-two {
     width: 200px;
     height: 108px;
+    position: relative;
+    left: 48px;
 }
 
 .card-one img {
