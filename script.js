@@ -102,6 +102,21 @@ formData.addEventListener("submit", function (event) {
         }
     }
 
+    if(expiryYear && !/^\d{2}$/.test(expiryYear)) {
+        if (!expiryDateError) {
+            expiryDate.innerHTML += `<p> wrong format, numbers only </p>`;
+        } else {
+            expiryDateError.remove();
+        }
+    }
+
+    if(expiryMonth && !/^(0[1-9]|1[0-2])$/.test(expiryMonth)) {
+        if (!expiryDateError) {
+            expiryDate.innerHTML += `<p> wrong format, numbers only </p>`;
+        } else {
+            expiryDateError.remove();
+        }
+    }
 
 });
 
