@@ -10,6 +10,10 @@ const numberInput = document.querySelector("#number");
 const monthInput = document.querySelector("#month");
 const yearInput = document.querySelector("#year");
 const cvcInput = document.querySelector("#cvc");
+const rowOne = document.querySelector(".row-one");
+const rowTwo = document.querySelector(".row-two");
+const expiryDate = document.querySelector(".expiry-date");
+const cvcData = document.querySelector(".cvc-data");
 
 function setValue(element, value){
     element.innerText = value
@@ -41,12 +45,18 @@ formData.addEventListener("submit", function (event) {
     const form = event.target;
     const cardName = form["name"].value;
     const cardNumber = form["number"].value;
-    const expiryDate = form["dd"].value;
-    const expiryMonth = form["mm"].value;
+    const expiryYear = form["year"].value;
+    const expiryMonth = form["month"].value;
     const cvc = form["cvc"].value;
 
     // Validations
 
+    if(!cardName && !cardNumber && !expiryYear && !expiryMonth && !cvc) {
+        rowOne.innerHTML += `<p> can't be blank </p>`;
+        rowTwo.innerHTML += `<p> can't be blank </p>`;
+        expiryDate.innerHTML += `<p> can't be blank </p>`;
+        cvcData.innerHTML += `<p> can't be blank </p>`;
+    }
 });
 
 
