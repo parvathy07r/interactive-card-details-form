@@ -52,10 +52,35 @@ formData.addEventListener("submit", function (event) {
     // Validations
 
     if(!cardName && !cardNumber && !expiryYear && !expiryMonth && !cvc) {
-        rowOne.innerHTML += `<p> can't be blank </p>`;
-        rowTwo.innerHTML += `<p> can't be blank </p>`;
-        expiryDate.innerHTML += `<p> can't be blank </p>`;
-        cvcData.innerHTML += `<p> can't be blank </p>`;
+
+        const rowOneError = rowOne.querySelector("p");
+        const rowTwoError = rowTwo.querySelector("p");
+        const expiryDateError = expiryDate.querySelector("p");
+        const cvcError = cvcData.querySelector("p");
+
+        if(rowOneError) {
+            rowOneError.remove();
+        }else {
+            rowOne.innerHTML += `<p> can't be blank </p>`;
+        }
+
+        if(rowTwoError) {
+            rowTwoError.remove();
+        }else {
+            rowTwo.innerHTML += `<p> can't be blank </p>`;
+        }
+
+        if(expiryDateError) {
+            expiryDateError.remove();
+        }else {
+            expiryDate.innerHTML += `<p> can't be blank </p>`;
+        }
+
+        if(cvcError) {
+            cvcError.remove();
+        }else {
+            cvcData.innerHTML += `<p> can't be blank </p>`;
+        }
     }
 });
 
