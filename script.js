@@ -14,7 +14,6 @@ const rowOne = document.querySelector(".row-one");
 const rowTwo = document.querySelector(".row-two");
 const expiryDate = document.querySelector(".expiry-date");
 const cvcData = document.querySelector(".cvc-data");
-// const regex = new RegExp(`^\d{16}$`);
 
 function setValue(element, value) {
     element.innerText = value
@@ -118,6 +117,17 @@ formData.addEventListener("submit", function (event) {
         }
     }
 
+    const secondDiv = document.querySelector(".second-page");
+    const firstDiv = document.querySelector(".container-two");
+    const secondDivComputedStyle = window.getComputedStyle(secondDiv);
+
+    if(secondDivComputedStyle.display === 'none') {
+        secondDiv.style.display = "inline-flex";
+        formData.style.display = "none";
+    }
+
 });
+
+
 
 
