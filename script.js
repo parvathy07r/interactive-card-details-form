@@ -14,12 +14,13 @@ const rowOne = document.querySelector(".row-one");
 const rowTwo = document.querySelector(".row-two");
 const expiryDate = document.querySelector(".expiry-date");
 const cvcData = document.querySelector(".cvc-data");
+// const regex = new RegExp(`^\d{16}$`);
 
-function setValue(element, value){
+function setValue(element, value) {
     element.innerText = value
 }
 
-nameInput.addEventListener("input", function(event){
+nameInput.addEventListener("input", function (event) {
     setValue(displayName, event.target.value);
 });
 
@@ -48,40 +49,60 @@ formData.addEventListener("submit", function (event) {
     const expiryYear = form["year"].value;
     const expiryMonth = form["month"].value;
     const cvc = form["cvc"].value;
+    const rowOneError = rowOne.querySelector("p");
+    const rowTwoError = rowTwo.querySelector("p");
+    const expiryDateError = expiryDate.querySelector("p");
+    const cvcError = cvcData.querySelector("p");
+
+
+
 
     // Validations
 
-    if(!cardName && !cardNumber && !expiryYear && !expiryMonth && !cvc) {
+    if (!cardName && !cardNumber && !expiryYear && !expiryMonth && !cvc) {
 
-        const rowOneError = rowOne.querySelector("p");
-        const rowTwoError = rowTwo.querySelector("p");
-        const expiryDateError = expiryDate.querySelector("p");
-        const cvcError = cvcData.querySelector("p");
-
-        if(rowOneError) {
-            rowOneError.remove();
-        }else {
+        if (!rowOneError) {
             rowOne.innerHTML += `<p> can't be blank </p>`;
+        } else {
+            rowOneError.remove();
         }
 
-        if(rowTwoError) {
-            rowTwoError.remove();
-        }else {
+        if (!rowTwoError) {
             rowTwo.innerHTML += `<p> can't be blank </p>`;
+        } else {
+            rowTwoError.remove();
         }
 
-        if(expiryDateError) {
-            expiryDateError.remove();
-        }else {
+        if (!expiryDateError) {
             expiryDate.innerHTML += `<p> can't be blank </p>`;
+        } else {
+            expiryDateError.remove();
         }
 
-        if(cvcError) {
-            cvcError.remove();
-        }else {
+        if (!cvcError) {
             cvcData.innerHTML += `<p> can't be blank </p>`;
+        } else {
+            cvcError.remove();
         }
     }
+
+    if (cardNumber && !/^\d{16}$/.test(cardNumber)) {
+        if (rowTwoError) {
+            rowTwoError.remove();
+        } else {
+            rowTwo.innerHTML += `<p> wrong format, numbers only </p>`;
+        }
+    }
+
+    if (cvc && !/^\d{3}$/.test(cvc)) {
+        if (!cvcError) {
+            cvcData.innerHTML += `<p> wrong format, numbers only </p>`;
+        } else {
+            cvcError.remove();
+        }
+    }
+
+
 });
 
 
