@@ -1,26 +1,21 @@
-
+//select the form element
 const formData = document.querySelector("#form_data");
-
+// Select elements to display card detail
 const displayNumber = document.querySelector(".display-number");
 const displayName = document.querySelector(".display-name");
 const displayMonth = document.querySelector(".display-month");
 const displayYear = document.querySelector(".display-year");
 const displayCVC = document.querySelector(".display-cvc");
-
+//select input elements
 const nameInput = document.querySelector("#name");
 const numberInput = document.querySelector("#number");
 const monthInput = document.querySelector("#month");
 const yearInput = document.querySelector("#year");
 const cvcInput = document.querySelector("#cvc");
-
-// const nameContainer = document.querySelector(".row-one");
-// const numberContainer = document.querySelector(".row-two");
-// const expiryDateContainer = document.querySelector(".expiry-date");
-// const cvcContainer = document.querySelector(".cvc-data");
-
+//select the second page element
 const secondPage = document.querySelector(".second-page");
 const secondDivComputedStyle = window.getComputedStyle(secondPage);
-
+//select the elemnt to display errors
 const nameError = document.querySelector(".name-error");
 const numberError = document.querySelector(".number-error");
 const dateError = document.querySelector(".date-error");
@@ -33,6 +28,7 @@ function setValue(element, value) {
     element.innerText = value
 }
 
+//add eventlisteners to the input elements to display card detils real time
 nameInput.addEventListener("input", function (event) {
     setValue(displayName, event.target.value);
 });
@@ -53,10 +49,11 @@ cvcInput.addEventListener("input", function (event) {
 	setValue(displayCVC, event.target.value);
 });
 
-
+//form submission handler
 formData.addEventListener("submit", function (event) {
     event.preventDefault();
 
+    //extracting input values from the form
     const form = event.target;
     const cardName = form["name"].value;
     const cardNumber = form["number"].value;
@@ -64,8 +61,10 @@ formData.addEventListener("submit", function (event) {
     const expiryMonth = form["month"].value;
     const cvc = form["cvc"].value;
 
+    //calling function  for validating card details
 		const result = validation(cardName, cardNumber, expiryMonth, expiryYear, cvc);
 
+    //redirect to next page the validations are true
 		if(result) {
 			redirect();
 		}
@@ -77,6 +76,7 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 
 	let isValid =true;
 
+    //validations
 		if(!cardName) {
 			setBlankError("can't be blank", nameError);
 			isValid = false;
@@ -134,13 +134,13 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 
 }
 
+//function to display error message if the input fields are empty
 function setBlankError(errorMessage, element) {
 	element.innerHTML = `<p> ${errorMessage} </p>`
 }
 
+//function to display error message if the input values are in wrong format
 function setWrongFormatError(value, inputValue, element, errorMessage) {
-
-
 
   const regex = new RegExp(value);
 
@@ -155,6 +155,7 @@ function setWrongFormatError(value, inputValue, element, errorMessage) {
 
 }
 
+//function to redirect to next page
 function redirect() {
 	if(secondDivComputedStyle.display === 'none') {
 		secondPage.style.display = "inline-flex";
