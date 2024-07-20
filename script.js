@@ -13,18 +13,20 @@ const monthInput = document.querySelector("#month");
 const yearInput = document.querySelector("#year");
 const cvcInput = document.querySelector("#cvc");
 
-const nameContainer = document.querySelector(".row-one");
-const numberContainer = document.querySelector(".row-two");
-const expiryDateContainer = document.querySelector(".expiry-date");
-const cvcContainer = document.querySelector(".cvc-data");
+// const nameContainer = document.querySelector(".row-one");
+// const numberContainer = document.querySelector(".row-two");
+// const expiryDateContainer = document.querySelector(".expiry-date");
+// const cvcContainer = document.querySelector(".cvc-data");
 
-const secondDiv = document.querySelector(".second-page");
-const secondDivComputedStyle = window.getComputedStyle(secondDiv);
+const secondPage = document.querySelector(".second-page");
+const secondDivComputedStyle = window.getComputedStyle(secondPage);
 
 const nameError = document.querySelector(".name-error");
 const numberError = document.querySelector(".number-error");
 const dateError = document.querySelector(".date-error");
 const cvcError = document.querySelector(".cvc-error");
+
+let outcome;
 
 
 function setValue(element, value) {
@@ -67,6 +69,7 @@ formData.addEventListener("submit", function (event) {
 		if(result) {
 			redirect();
 		}
+
 });
 
 //function to validate cardname, cardnumber,expirymonth, expiryyear, cvc
@@ -83,41 +86,49 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 			setBlankError("can't be blank", numberError);
 			isValid = false;
 		}
+    
+    if(cardNumber) {
+      setWrongFormatError(/^\d{16}$/, cardNumber, numberError, "wrong format, numbers only");
+      if(!outcome) {
+        isValid =false;
+      }
+    }
 
 		if(!expiryMonth) {
 			setBlankError("can't be blank", dateError);
 			isValid = false;
 		}
 
+    if(expiryMonth) {
+      setWrongFormatError(/^(0[1-9]|1[0-2])$/, expiryMonth, dateError, "wrong format, numbers only", isValid);
+      if(!outcome) {
+        isValid =false;
+      }
+    }
+
 		if(!expiryYear) {
 			setBlankError("can't be blank", dateError);
 			isValid = false;
 		}
-
+    
+    if(expiryYear) {
+      setWrongFormatError(/^\d{2}$/, expiryYear,dateError, "wrong format, numbers only", isValid);
+      if(!outcome) {
+        isValid =false;
+      }
+    }
+      
 		if(!cvc) {
 			setBlankError("can't be blank", cvcError);
 			isValid = false;
 		}
-
-		if(cardNumber) {
-			setWrongFormatError(/^\d{16}$/, cardNumber, numberError, "wrong format, numbers only");
-			isValid = false;
-		}
-		
-		if(expiryMonth) {
-			setWrongFormatError(/^(0[1-9]|1[0-2])$/, expiryMonth, dateError, "wrong format, numbers only");
-			isValid = false;
-		}
-
-		if(expiryYear) {
-			setWrongFormatError(/^\d{2}$/, expiryYear,dateError, "wrong format, numbers only");
-			isValid = false;
-		}
-
-		if(cvc) {
-			setWrongFormatError(/^\d{3}$/, cvc, cvcError, "wrong format, numbers only");
-			isValid = false;
-		}
+    
+    if(cvc) {
+      setWrongFormatError(/^\d{3}$/, cvc, cvcError, "wrong format, numbers only", isValid);
+      if(!outcome) {
+        isValid =false;
+      }
+    }
 
   return isValid;
 
@@ -127,17 +138,26 @@ function setBlankError(errorMessage, element) {
 	element.innerHTML = `<p> ${errorMessage} </p>`
 }
 
-function setWrongFormatError(regex, inputValue, element, errorMessage) {
+function setWrongFormatError(value, inputValue, element, errorMessage) {
+
+
+
+  const regex = new RegExp(value);
 
 	if(!regex.test(inputValue)) {
-		element.innerHTML  = `<p> ${errorMessage} </p>`
-	}
+		element.innerHTML  = `<p> ${errorMessage} </p>`;
+    outcome = false;
+  }else {
+    outcome = true;
+  }
+
+  return outcome;
 
 }
 
 function redirect() {
 	if(secondDivComputedStyle.display === 'none') {
-		secondDiv.style.display = "inline-flex";
+		secondPage.style.display = "inline-flex";
 		formData.style.display = "none";
   }
 }
