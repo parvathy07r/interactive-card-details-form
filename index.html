@@ -36,12 +36,13 @@
         <div class="row-one">
           <span>CARDHOLDER NAME</span><br>
           <input type="text" placeholder="e.g. Jane Appleseed" id="name" class="display-name">
+          <div class="name-error"></div>
         </div>
 
         <div class="row-two">
           <span>CARDHOLDER NUMBER</span><br>
           <input type="text" placeholder="e.g. 1234 5678 9123 0000" id="number">
-          <div class="error"></div>
+          <div class="number-error"></div>
         </div>
 
         <div class="row-three">
@@ -49,11 +50,13 @@
             <span>Exp. Date (MM/YY)</span><br>
             <input type="text" placeholder="MM" id="month">
             <input type="text" placeholder="YY" id="year">
+            <div class="date-error"></div>
           </div>
 
           <div class="cvc-data">
             <span>CVC</span><br>
             <input type="text" placeholder="e.g. 123" id="cvc">
+            <div class="cvc-error"></div>
           </div>
 
         </div>

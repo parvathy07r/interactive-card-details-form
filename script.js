@@ -13,18 +13,18 @@ const monthInput = document.querySelector("#month");
 const yearInput = document.querySelector("#year");
 const cvcInput = document.querySelector("#cvc");
 
-const rowOne = document.querySelector(".row-one");
-const rowTwo = document.querySelector(".row-two");
-const expiryDate = document.querySelector(".expiry-date");
-const cvcData = document.querySelector(".cvc-data");
+const nameContainer = document.querySelector(".row-one");
+const numberContainer = document.querySelector(".row-two");
+const expiryDateContainer = document.querySelector(".expiry-date");
+const cvcContainer = document.querySelector(".cvc-data");
 
 const secondDiv = document.querySelector(".second-page");
 const secondDivComputedStyle = window.getComputedStyle(secondDiv);
 
-const rowOneError = rowOne.querySelector("p");
-const rowTwoError = rowTwo.querySelector("p");
-const expiryDateError = expiryDate.querySelector("p");
-const cvcError = cvcData.querySelector("p");
+const nameError = document.querySelector(".name-error");
+const numberError = document.querySelector(".number-error");
+const dateError = document.querySelector(".date-error");
+const cvcError = document.querySelector(".cvc-error");
 
 
 function setValue(element, value) {
@@ -62,9 +62,7 @@ formData.addEventListener("submit", function (event) {
     const expiryMonth = form["month"].value;
     const cvc = form["cvc"].value;
 
-
 		const result = validation(cardName, cardNumber, expiryMonth, expiryYear, cvc);
-
 
 		if(result) {
 			redirect();
@@ -73,40 +71,36 @@ formData.addEventListener("submit", function (event) {
 
 });
 
-
+//function to validate cardname, cardnumber,expirymonth, expiryyear, cvc
 function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 
 	let isValid =true;
 
-
-	if (!cardName && !cardNumber && !expiryYear && !expiryMonth && !cvc) {
-
-		if (!rowOneError) {
-				rowOne.innerHTML += `<p> can't be blank </p>`;
-		} else {
-				rowOneError.remove();
+		if(!cardName) {
+			setBlankError("can't be blank", nameError);
+			isValid = false;
 		}
 
-		if (!rowTwoError) {
-				rowTwo.innerHTML += `<p> can't be blank </p>`;
-		} else {
-				rowTwoError.remove();
+		if(!cardNumber) {
+			setBlankError("can't be blank", numberError);
+			isValid = false;
 		}
 
-		if (!expiryDateError) {
-				expiryDate.innerHTML += `<p> can't be blank </p>`;
-		} else {
-				expiryDateError.remove();
+		if(!expiryMonth) {
+			setBlankError("can't be blank", dateError);
+			isValid = false;
 		}
 
-		if (!cvcError) {
-				cvcData.innerHTML += `<p> can't be blank </p>`;
-		} else {
-				cvcError.remove();
+		if(!expiryYear) {
+			setBlankError("can't be blank", dateError);
+			isValid = false;
 		}
 
-		isValid = false;
-}
+		if(!cvc) {
+			setBlankError("can't be blank", cvcError);
+			isValid = false;
+		}
+
 
 if (cardNumber && !/^\d{16}$/.test(cardNumber)) {
 		if (rowTwoError) {
@@ -150,6 +144,10 @@ if(expiryMonth && !/^(0[1-9]|1[0-2])$/.test(expiryMonth)) {
 
 return isValid;
 
+}
+
+function setBlankError(value, element) {
+	element.innerHTML = `<p> ${value} </p>`
 }
 
 
