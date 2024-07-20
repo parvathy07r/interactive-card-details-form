@@ -67,8 +67,6 @@ formData.addEventListener("submit", function (event) {
 		if(result) {
 			redirect();
 		}
-    
-
 });
 
 //function to validate cardname, cardnumber,expirymonth, expiryyear, cvc
@@ -101,61 +99,47 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 			isValid = false;
 		}
 
-
-if (cardNumber && !/^\d{16}$/.test(cardNumber)) {
-		if (rowTwoError) {
-				rowTwoError.remove();
-		} else {
-				rowTwo.innerHTML += `<p> wrong format, numbers only </p>`;
+		if(cardNumber) {
+			setWrongFormatError(/^\d{16}$/, cardNumber, numberError, "wrong format, numbers only");
+			isValid = false;
+		}
+		
+		if(expiryMonth) {
+			setWrongFormatError(/^(0[1-9]|1[0-2])$/, expiryMonth, dateError, "wrong format, numbers only");
+			isValid = false;
 		}
 
-		isValid = false;
-}
-
-if (cvc && !/^\d{3}$/.test(cvc)) {
-		if (!cvcError) {
-				cvcData.innerHTML += `<p> wrong format, numbers only </p>`;
-		} else {
-				cvcError.remove();
+		if(expiryYear) {
+			setWrongFormatError(/^\d{2}$/, expiryYear,dateError, "wrong format, numbers only");
+			isValid = false;
 		}
 
-		isValid =false;
-}
-			
-if(expiryYear && !/^\d{2}$/.test(expiryYear)) {
-		if (!expiryDateError) {
-				expiryDate.innerHTML += `<p> wrong format, numbers only </p>`;
-		} else {
-				expiryDateError.remove();
+		if(cvc) {
+			setWrongFormatError(/^\d{3}$/, cvc, cvcError, "wrong format, numbers only");
+			isValid = false;
 		}
 
-		isValid = false;
-}
-
-if(expiryMonth && !/^(0[1-9]|1[0-2])$/.test(expiryMonth)) {
-		if (!expiryDateError) {
-				expiryDate.innerHTML += `<p> wrong format, numbers only </p>`;
-		} else {
-				expiryDateError.remove();
-		}
-
-		isValid = false;
-}       
-
-return isValid;
+  return isValid;
 
 }
 
-function setBlankError(value, element) {
-	element.innerHTML = `<p> ${value} </p>`
+function setBlankError(errorMessage, element) {
+	element.innerHTML = `<p> ${errorMessage} </p>`
 }
 
+function setWrongFormatError(regex, inputValue, element, errorMessage) {
+
+	if(!regex.test(inputValue)) {
+		element.innerHTML  = `<p> ${errorMessage} </p>`
+	}
+
+}
 
 function redirect() {
 	if(secondDivComputedStyle.display === 'none') {
 		secondDiv.style.display = "inline-flex";
 		formData.style.display = "none";
-}
+  }
 }
 
 
