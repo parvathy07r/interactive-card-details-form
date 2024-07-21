@@ -22,9 +22,7 @@ const dateError = document.querySelector(".date-error");
 const cvcError = document.querySelector(".cvc-error");
 //select continue button
 const continueButton = document.querySelector(".continue-button");
-
 let outcome;
-
 
 function setValue(element, value) {
     nameInput.style.border = "1px solid black";

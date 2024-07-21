@@ -30,6 +30,7 @@ p {
     display: flex;
     flex-direction: column;
     row-gap: 16px;
+    font-size: 14px;
 }
 
 form {
@@ -75,13 +76,14 @@ button {
 }
 
 .card-one {
-    background-color: pink;
     padding: 8px;
-    width: 200px;
+    width: 196px;
     display: flex;
     flex-direction: column;
     row-gap: 16px;
     height: 108px;
+    background-image: url("./images/bg-card-front.png");
+    background-size: contain;
 }
 
 .card-two {
@@ -89,6 +91,18 @@ button {
     height: 108px;
     position: relative;
     left: 48px;
+    background-image: url("./images/bg-card-back.png");
+    background-size: contain;
+    font-size: 8px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.display-cvc {
+    position: relative;
+    right: 24px;
+    color: white;
 }
 
 .card-one img {
