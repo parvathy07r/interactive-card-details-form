@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap');
+
 html, body {
     padding: 0;
     margin: 0;
@@ -20,7 +22,8 @@ p {
     align-items: center;
     column-gap: 104px;
     height: 100vh;
-    margin: 0 auto
+    margin: 0 auto;
+    font-family: "Space Grotesk", sans-serif;
 }
 
 .container-one {
