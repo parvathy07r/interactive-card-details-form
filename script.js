@@ -69,6 +69,14 @@ formData.addEventListener("submit", function (event) {
 			redirect();
 		}
 
+    if(!result) {
+      nameInput.style.border = "1px solid red";
+      numberInput.style.border = "1px solid red";
+      monthInput.style.border = "1px solid red";
+      yearInput.style.border = "1px solid red";
+      cvcInput.style.border = "1px solid red";
+    }
+
 });
 
 //function to validate cardname, cardnumber,expirymonth, expiryyear, cvc
