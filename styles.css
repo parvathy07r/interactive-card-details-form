@@ -11,7 +11,7 @@ html, body {
 p {
     margin: 4px 0px 0px 0px;
     color: red;
-    font-size: 8px;
+    font-size: 12px;
 }
 
 .wrapper {
@@ -20,7 +20,6 @@ p {
     align-items: center;
     column-gap: 104px;
     height: 100vh;
-    border: 1px solid red;
     margin: 0 auto
 }
 
