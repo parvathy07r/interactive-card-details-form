@@ -20,22 +20,23 @@ const nameError = document.querySelector(".name-error");
 const numberError = document.querySelector(".number-error");
 const dateError = document.querySelector(".date-error");
 const cvcError = document.querySelector(".cvc-error");
+//select continue button
+const continueButton = document.querySelector(".continue-button");
 
 let outcome;
 
 
 function setValue(element, value) {
-
-  nameInput.style.border = "1px solid black";
+    nameInput.style.border = "1px solid black";
     numberInput.style.border = "1px solid black";
     monthInput.style.border = "1px solid black";
     yearInput.style.border = "1px solid black";
     cvcInput.style.border = "1px solid black";
-  nameError.innerHTML = "";
-  numberError.innerHTML = "";
-  dateError.innerHTML = "";
-  cvcError.innerHTML = "";
-  element.innerText = value
+    nameError.innerHTML = "";
+    numberError.innerHTML = "";
+    dateError.innerHTML = "";
+    cvcError.innerHTML = "";
+    element.innerText = value
 }
 
 //add eventlisteners to the input elements to display card detils real time
@@ -79,13 +80,6 @@ formData.addEventListener("submit", function (event) {
     redirect();
   }
 
-  if (!result) {
-   
-   
-   
-    
-    
-  }
 });
 
 //function to validate cardname, cardnumber,expirymonth, expiryyear, cvc
@@ -188,6 +182,10 @@ function redirect() {
     formData.style.display = "none";
   }
 }
+
+continueButton.addEventListener("click", function(event) {
+  location.reload();
+});
 
 
 
