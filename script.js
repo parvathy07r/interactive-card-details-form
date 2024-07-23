@@ -42,7 +42,7 @@ function setValue(element, value) {
 
 
 /*
-description: add eventlisteners to the input elements to display card detils real time in the card 
+add eventlisteners to the input elements to display card detils real time in the card 
 */
 
 nameInput.addEventListener("input", function (event) {
@@ -66,14 +66,14 @@ cvcInput.addEventListener("input", function (event) {
 });
 
 /*
-description: form submission handler
+form submission handler
 */ 
 
 formData.addEventListener("submit", function (event) {
   event.preventDefault();
 
   /*
-  description: extracting input values from the form
+  extracting input values from the form
   */
 
   const form = event.target;
@@ -84,13 +84,13 @@ formData.addEventListener("submit", function (event) {
   const cvc = form["cvc"].value;
 
   /*
-  description: calling the function for valudation and storing the result.
+  calling the function for valudation and storing the result.
   */
 
   const result = validation(cardName, cardNumber, expiryMonth, expiryYear, cvc);
 
   /*
-  description: calling the function redirect to redirect to next page if the validations are true.
+  calling the function redirect to redirect to next page if the validations are true.
   */
 
   if (result) {
@@ -112,13 +112,13 @@ parameters:
 function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 
   /*
-  description: setting the variable invalid as true.
+  setting the variable invalid as true.
   */
 
   let isValid = true;
 
   /*
-  description: calling the function setBlankError if name is empty and storing the result.
+  calling the function setBlankError if name is empty and storing the result.
   */
 
   if (!cardName) {
@@ -126,7 +126,7 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
   }
 
   /*
-  description: calling the function setBlankError if card number is empty and storing the result.
+  calling the function setBlankError if card number is empty and storing the result.
   */
 
   if (!cardNumber) {
@@ -134,7 +134,7 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
   }
 
   /*
-  description: calling the function setWrongFormatError if card number is present to check if it is in wrong format or not and storing the result.
+  calling the function setWrongFormatError if card number is present to check if it is in wrong format or not and storing the result.
   */
 
   if (cardNumber) {
@@ -142,7 +142,7 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
   }
 
   /*
-  description: calling the function setBlankError if expiry month is empty and storing the result.
+  calling the function setBlankError if expiry month is empty and storing the result.
   */
 
   if (!expiryMonth) {
@@ -150,7 +150,7 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
   }
 
   /*
-  description: calling the function setWrongFormatError if expiry month is present to check if it is in wrong format or not and storing the result.
+  calling the function setWrongFormatError if expiry month is present to check if it is in wrong format or not and storing the result.
   */
 
   if (expiryMonth) {
@@ -158,7 +158,7 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
   }
 
   /*
-  description: calling the function setBlankError if expiry year is empty and storing the result.
+  calling the function setBlankError if expiry year is empty and storing the result.
   */
 
   if (!expiryYear) {
@@ -166,7 +166,7 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
   }
 
   /*
-  description: calling the function setWrongFormatError if expiry year is present to check if it is in wrong format or not and storing the result.
+  calling the function setWrongFormatError if expiry year is present to check if it is in wrong format or not and storing the result.
   */
 
   if (expiryYear) {
@@ -174,7 +174,7 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
   }
 
   /*
-  description: calling the function setBlankError if cvc is empty and storing the result.
+  calling the function setBlankError if cvc is empty and storing the result.
   */
 
   if (!cvc) {
@@ -182,7 +182,7 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
   }
 
   /*
-  description: calling the function setWrongFormatError if cvc is present to check if it is in wrong format or not and storing the result.
+  calling the function setWrongFormatError if cvc is present to check if it is in wrong format or not and storing the result.
   */
 
   if (cvc) {
@@ -230,13 +230,13 @@ function setWrongFormatError(regex, inputValue, element, errorMessage, inputElem
 }
 
 /*
-description: function to redirect to next page
+function to redirect to next page
 */
 
 function redirect() {
 
   /*
-  description: if the computed style of sceon page is none, set the display of second page as inline-flex and form as none
+  if the computed style of sceon page is none, set the display of second page as inline-flex and form as none
   */
 
   if (secondDivComputedStyle.display === 'none') {
@@ -247,7 +247,7 @@ function redirect() {
 }
 
 /*
-description: adding an event listener to the continue button. If the button is clicked the page is reloaded
+adding an event listener to the continue button. If the button is clicked the page is reloaded
 */
 
 continueButton.addEventListener("click", function(event) {
