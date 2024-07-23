@@ -83,60 +83,39 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 
   //validations
   if (!cardName) {
-    setBlankError("can't be blank", nameError, nameInput);
-    isValid = false;
+    isValid = setBlankError("can't be blank", nameError, nameInput);
   }
 
   if (!cardNumber) {
-    setBlankError("can't be blank", numberError, numberInput);
-    isValid = false;
+    isValid = setBlankError("can't be blank", numberError, numberInput);
   }
 
   if (cardNumber) {
-    setWrongFormatError(/^\d{16}$/, cardNumber, numberError, "wrong format, numbers only");
-    if (!outcome) {
-      isValid = false;
-      numberInput.style.border = "1px solid red";
-    }
+    isValid = setWrongFormatError(/^\d{16}$/, cardNumber, numberError, "wrong format, input 16 digits only!", numberInput);
   }
 
   if (!expiryMonth) {
-    setBlankError("can't be blank", dateError, monthInput);
-    isValid = false;
+    isValid = setBlankError("can't be blank", dateError, monthInput);
   }
 
   if (expiryMonth) {
-    setWrongFormatError(/^(0[1-9]|1[0-2])$/, expiryMonth, dateError, "wrong format, numbers only", isValid);
-    if (!outcome) {
-      isValid = false;
-      monthInput.style.border = "1px solid red";
-    }
+    isValid = setWrongFormatError(/^(0[1-9]|1[0-2])$/, expiryMonth, dateError, "wrong format, input month in MM format only!", monthInput);
   }
 
   if (!expiryYear) {
-    setBlankError("can't be blank", dateError, yearInput);
-    isValid = false;
+    isValid = setBlankError("can't be blank", dateError, yearInput);
   }
 
   if (expiryYear) {
-    setWrongFormatError(/^\d{2}$/, expiryYear, dateError, "wrong format, numbers only", isValid);
-    if (!outcome) {
-      isValid = false;
-      yearInput.style.border = "1px solid red";
-    }
+    isValid = setWrongFormatError(/^\d{2}$/, expiryYear, dateError, "wrong format, input year in YY format only!", yearInput);
   }
 
   if (!cvc) {
-    setBlankError("can't be blank", cvcError, cvcInput);
-    isValid = false;
+    isValid = setBlankError("can't be blank", cvcError, cvcInput);
   }
 
   if (cvc) {
-    setWrongFormatError(/^\d{3}$/, cvc, cvcError, "wrong format, numbers only", isValid);
-    if (!outcome) {
-      isValid = false;
-      cvcInput.style.border = "1px solid red";
-    }
+    isValid = setWrongFormatError(/^\d{3}$/, cvc, cvcError, "wrong format, input 3 digits only!", cvcInput);
   }
 
   return isValid;
@@ -147,22 +126,19 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 function setBlankError(errorMessage, errorElement, inputElement) {
   errorElement.innerHTML = `<p> ${errorMessage} </p>`;
   inputElement.style.border = "1px solid red";
+  return false;
 }
 
 //function to display error message if the input values are in wrong format
-function setWrongFormatError(value, inputValue, element, errorMessage) {
+function setWrongFormatError(regex, inputValue, element, errorMessage, inputElement) {
 
-  const regex = new RegExp(value);
+  const pattern = new RegExp(regex);
 
-  if (!regex.test(inputValue)) {
+  if (!pattern.test(inputValue)) {
     element.innerHTML = `<p> ${errorMessage} </p>`;
-    outcome = false;
-  } else {
-    outcome = true;
+    inputElement.style.border = "ipx solid red";
+    return false;
   }
-
-  return outcome;
-
 }
 
 //function to redirect to next page
