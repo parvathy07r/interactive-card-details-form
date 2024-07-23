@@ -227,6 +227,8 @@ function setWrongFormatError(regex, inputValue, element, errorMessage, inputElem
     return false;
   }
 
+  return true;
+
 }
 
 /*
