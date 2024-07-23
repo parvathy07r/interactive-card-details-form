@@ -42,8 +42,7 @@ function setValue(element, value) {
 
 
 /*
-description: add eventlisteners to the input elements to display card detils real time in the card
-parameters:  
+description: add eventlisteners to the input elements to display card detils real time in the card 
 */
 
 nameInput.addEventListener("input", function (event) {
@@ -86,7 +85,6 @@ formData.addEventListener("submit", function (event) {
 
   /*
   description: calling the function for valudation and storing the result.
-  arguments: cardName, cardNumber, expiryYear, expiryMonth, cvc
   */
 
   const result = validation(cardName, cardNumber, expiryMonth, expiryYear, cvc);
@@ -121,10 +119,6 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 
   /*
   description: calling the function setBlankError if name is empty and storing the result.
-  arguments:
-  1. error message
-  2. html element to display error message
-  3. input field for name
   */
 
   if (!cardName) {
@@ -133,10 +127,6 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 
   /*
   description: calling the function setBlankError if card number is empty and storing the result.
-  arguments:
-  1. error message
-  2. html element to display error message
-  3. input field for card number
   */
 
   if (!cardNumber) {
@@ -145,12 +135,6 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 
   /*
   description: calling the function setWrongFormatError if card number is present to check if it is in wrong format or not and storing the result.
-  arguments:
-  1. regex pattern for card number indicating card number should be 16 digit number
-  2. input value
-  3. html element to display error message
-  4. error message
-  5. input field for card number
   */
 
   if (cardNumber) {
@@ -159,10 +143,6 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 
   /*
   description: calling the function setBlankError if expiry month is empty and storing the result.
-  arguments:
-  1. error message
-  2. html element to display error message
-  3. input field for expiry month
   */
 
   if (!expiryMonth) {
@@ -171,12 +151,6 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 
   /*
   description: calling the function setWrongFormatError if expiry month is present to check if it is in wrong format or not and storing the result.
-  arguments:
-  1. regex pattern for card number indicating that the expiry month should be in MM format
-  2. input value
-  3. html element to display error message
-  4. error message
-  5. input field for expiry month
   */
 
   if (expiryMonth) {
@@ -185,10 +159,6 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 
   /*
   description: calling the function setBlankError if expiry year is empty and storing the result.
-  arguments:
-  1. error message
-  2. html element to display error message
-  3. input field for expiry year
   */
 
   if (!expiryYear) {
@@ -197,24 +167,14 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 
   /*
   description: calling the function setWrongFormatError if expiry year is present to check if it is in wrong format or not and storing the result.
-  arguments:
-  1. regex pattern for card number indicating expiry year should be in YY format
-  2. input value
-  3. html element to display error message
-  4. error message
-  5. input field for expiry year
   */
 
   if (expiryYear) {
     isValid = setWrongFormatError(/^\d{2}$/, expiryYear, dateError, "wrong format, input year in YY format only!", yearInput);
   }
 
-    /*
+  /*
   description: calling the function setBlankError if cvc is empty and storing the result.
-  arguments:
-  1. error message
-  2. html element to display error message
-  3. input field for cvc
   */
 
   if (!cvc) {
@@ -223,12 +183,6 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 
   /*
   description: calling the function setWrongFormatError if cvc is present to check if it is in wrong format or not and storing the result.
-  arguments:
-  1. regex pattern for card number indicating cvc should be a 3 digit number
-  2. input value
-  3. html element to display error message
-  4. error message
-  5. input field for cvc
   */
 
   if (cvc) {
@@ -277,7 +231,6 @@ function setWrongFormatError(regex, inputValue, element, errorMessage, inputElem
 
 /*
 description: function to redirect to next page
-arguments:
 */
 
 function redirect() {
