@@ -29,11 +29,23 @@ const cvcError = document.querySelector(".cvc-error");
 const continueButton = document.querySelector(".continue-button");
 let outcome;
 
+/*
+description: function to update the card details in the card.
+parameters: 
+1. element: the html element whose innertext to be updated.
+2. value: the value to set. 
+*/
+
 function setValue(element, value) {
     element.innerText = value
 }
 
-//add eventlisteners to the input elements to display card detils real time
+
+/*
+description: add eventlisteners to the input elements to display card detils real time in the card
+parameters:  
+*/
+
 nameInput.addEventListener("input", function (event) {
   setValue(displayName, event.target.value);
 });
@@ -54,11 +66,17 @@ cvcInput.addEventListener("input", function (event) {
   setValue(displayCVC, event.target.value);
 });
 
-//form submission handler
+/*
+description: form submission handler
+*/ 
+
 formData.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  //extracting input values from the form
+  /*
+  description: extracting input values from the form
+  */
+
   const form = event.target;
   const cardName = form["name"].value;
   const cardNumber = form["number"].value;
@@ -66,53 +84,152 @@ formData.addEventListener("submit", function (event) {
   const expiryMonth = form["month"].value;
   const cvc = form["cvc"].value;
 
-  //calling function  for validating card details
+  /*
+  description: calling the function for valudation and storing the result.
+  arguments: cardName, cardNumber, expiryYear, expiryMonth, cvc
+  */
+
   const result = validation(cardName, cardNumber, expiryMonth, expiryYear, cvc);
 
-  //redirect to next page the validations are true
+  /*
+  description: calling the function redirect to redirect to next page if the validations are true.
+  */
+
   if (result) {
     redirect();
   }
 
 });
 
-//function to validate cardname, cardnumber,expirymonth, expiryyear, cvc
+/*
+description: function for validation.
+parameters: 
+1. cardName - for name
+2. cardNumber - for card number
+3. expiryMonth - for expiry month
+4. expiryYear - for expiry year
+5.cvc - for cvc
+*/
+
 function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
+
+  /*
+  description: setting the variable invalid as true.
+  */
 
   let isValid = true;
 
-  //validations
+  /*
+  description: calling the function setBlankError if name is empty and storing the result.
+  arguments:
+  1. error message
+  2. html element to display error message
+  3. input field for name
+  */
+
   if (!cardName) {
     isValid = setBlankError("can't be blank", nameError, nameInput);
   }
+
+  /*
+  description: calling the function setBlankError if card number is empty and storing the result.
+  arguments:
+  1. error message
+  2. html element to display error message
+  3. input field for card number
+  */
 
   if (!cardNumber) {
     isValid = setBlankError("can't be blank", numberError, numberInput);
   }
 
+  /*
+  description: calling the function setWrongFormatError if card number is present to check if it is in wrong format or not and storing the result.
+  arguments:
+  1. regex pattern for card number indicating card number should be 16 digit number
+  2. input value
+  3. html element to display error message
+  4. error message
+  5. input field for card number
+  */
+
   if (cardNumber) {
     isValid = setWrongFormatError(/^\d{16}$/, cardNumber, numberError, "wrong format, input 16 digits only!", numberInput);
   }
+
+  /*
+  description: calling the function setBlankError if expiry month is empty and storing the result.
+  arguments:
+  1. error message
+  2. html element to display error message
+  3. input field for expiry month
+  */
 
   if (!expiryMonth) {
     isValid = setBlankError("can't be blank", dateError, monthInput);
   }
 
+  /*
+  description: calling the function setWrongFormatError if expiry month is present to check if it is in wrong format or not and storing the result.
+  arguments:
+  1. regex pattern for card number indicating that the expiry month should be in MM format
+  2. input value
+  3. html element to display error message
+  4. error message
+  5. input field for expiry month
+  */
+
   if (expiryMonth) {
     isValid = setWrongFormatError(/^(0[1-9]|1[0-2])$/, expiryMonth, dateError, "wrong format, input month in MM format only!", monthInput);
   }
+
+  /*
+  description: calling the function setBlankError if expiry year is empty and storing the result.
+  arguments:
+  1. error message
+  2. html element to display error message
+  3. input field for expiry year
+  */
 
   if (!expiryYear) {
     isValid = setBlankError("can't be blank", dateError, yearInput);
   }
 
+  /*
+  description: calling the function setWrongFormatError if expiry year is present to check if it is in wrong format or not and storing the result.
+  arguments:
+  1. regex pattern for card number indicating expiry year should be in YY format
+  2. input value
+  3. html element to display error message
+  4. error message
+  5. input field for expiry year
+  */
+
   if (expiryYear) {
     isValid = setWrongFormatError(/^\d{2}$/, expiryYear, dateError, "wrong format, input year in YY format only!", yearInput);
   }
 
+    /*
+  description: calling the function setBlankError if cvc is empty and storing the result.
+  arguments:
+  1. error message
+  2. html element to display error message
+  3. input field for cvc
+  */
+
   if (!cvc) {
     isValid = setBlankError("can't be blank", cvcError, cvcInput);
   }
+
+  /*
+  description: calling the function setWrongFormatError if cvc is present to check if it is in wrong format or not and storing the result.
+  arguments:
+  1. regex pattern for card number indicating cvc should be a 3 digit number
+  2. input value
+  3. html element to display error message
+  4. error message
+  5. input field for cvc
+  */
 
   if (cvc) {
     isValid = setWrongFormatError(/^\d{3}$/, cvc, cvcError, "wrong format, input 3 digits only!", cvcInput);
@@ -122,14 +239,30 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 
 }
 
-//function to display error message if the input fields are empty
+/*
+description: function to display error message if the input fields are empty
+parameters:
+1. error message
+2. html elemnt to display error message
+3. input field
+*/
+
 function setBlankError(errorMessage, errorElement, inputElement) {
   errorElement.innerHTML = `<p> ${errorMessage} </p>`;
   inputElement.style.border = "1px solid red";
   return false;
 }
 
-//function to display error message if the input values are in wrong format
+/*
+description: function to display error message if the inputs are in wrong format
+parameters:
+1. regex value
+2. input value
+3. html element to display error message
+4. error message
+5. input field
+*/
+
 function setWrongFormatError(regex, inputValue, element, errorMessage, inputElement) {
 
   const pattern = new RegExp(regex);
@@ -139,18 +272,35 @@ function setWrongFormatError(regex, inputValue, element, errorMessage, inputElem
     inputElement.style.border = "ipx solid red";
     return false;
   }
+
 }
 
-//function to redirect to next page
+/*
+description: function to redirect to next page
+arguments:
+*/
+
 function redirect() {
+
+  /*
+  description: if the computed style of sceon page is none, set the display of second page as inline-flex and form as none
+  */
+
   if (secondDivComputedStyle.display === 'none') {
     secondPage.style.display = "inline-flex";
     formData.style.display = "none";
   }
+
 }
 
+/*
+description: adding an event listener to the continue button. If the button is clicked the page is reloaded
+*/
+
 continueButton.addEventListener("click", function(event) {
+
   location.reload();
+
 });
 
 
