@@ -1,39 +1,35 @@
 //select the form element
 const formData = document.querySelector("#form_data");
+
 // Select elements to display card detail
 const displayNumber = document.querySelector(".display-number");
 const displayName = document.querySelector(".display-name");
 const displayMonth = document.querySelector(".display-month");
 const displayYear = document.querySelector(".display-year");
 const displayCVC = document.querySelector(".display-cvc");
+
 //select input elements
 const nameInput = document.querySelector("#name");
 const numberInput = document.querySelector("#number");
 const monthInput = document.querySelector("#month");
 const yearInput = document.querySelector("#year");
 const cvcInput = document.querySelector("#cvc");
+
 //select the second page element
 const secondPage = document.querySelector(".second-page");
 const secondDivComputedStyle = window.getComputedStyle(secondPage);
+
 //select the elemnt to display errors
 const nameError = document.querySelector(".name-error");
 const numberError = document.querySelector(".number-error");
 const dateError = document.querySelector(".date-error");
 const cvcError = document.querySelector(".cvc-error");
+
 //select continue button
 const continueButton = document.querySelector(".continue-button");
 let outcome;
 
 function setValue(element, value) {
-    nameInput.style.border = "1px solid black";
-    numberInput.style.border = "1px solid black";
-    monthInput.style.border = "1px solid black";
-    yearInput.style.border = "1px solid black";
-    cvcInput.style.border = "1px solid black";
-    nameError.innerHTML = "";
-    numberError.innerHTML = "";
-    dateError.innerHTML = "";
-    cvcError.innerHTML = "";
     element.innerText = value
 }
 
@@ -87,15 +83,13 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 
   //validations
   if (!cardName) {
-    setBlankError("can't be blank", nameError);
+    setBlankError("can't be blank", nameError, nameInput);
     isValid = false;
-    nameInput.style.border = "1px solid red";
   }
 
   if (!cardNumber) {
-    setBlankError("can't be blank", numberError);
+    setBlankError("can't be blank", numberError, numberInput);
     isValid = false;
-    numberInput.style.border = "1px solid red";
   }
 
   if (cardNumber) {
@@ -107,9 +101,8 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
   }
 
   if (!expiryMonth) {
-    setBlankError("can't be blank", dateError);
+    setBlankError("can't be blank", dateError, monthInput);
     isValid = false;
-    monthInput.style.border = "1px solid red";
   }
 
   if (expiryMonth) {
@@ -121,9 +114,8 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
   }
 
   if (!expiryYear) {
-    setBlankError("can't be blank", dateError);
+    setBlankError("can't be blank", dateError, yearInput);
     isValid = false;
-    yearInput.style.border = "1px solid red";
   }
 
   if (expiryYear) {
@@ -135,9 +127,8 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
   }
 
   if (!cvc) {
-    setBlankError("can't be blank", cvcError);
+    setBlankError("can't be blank", cvcError, cvcInput);
     isValid = false;
-    cvcInput.style.border = "1px solid red";
   }
 
   if (cvc) {
@@ -153,8 +144,9 @@ function validation(cardName, cardNumber, expiryMonth, expiryYear, cvc) {
 }
 
 //function to display error message if the input fields are empty
-function setBlankError(errorMessage, element) {
-  element.innerHTML = `<p> ${errorMessage} </p>`
+function setBlankError(errorMessage, errorElement, inputElement) {
+  errorElement.innerHTML = `<p> ${errorMessage} </p>`;
+  inputElement.style.border = "1px solid red";
 }
 
 //function to display error message if the input values are in wrong format
